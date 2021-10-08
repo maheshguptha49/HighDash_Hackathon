@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import {NavLink} from 'react-router-dom'
+import {useHistory,NavLink} from 'react-router-dom'
 
 export default function Navbar() {
+    const history=useHistory()
     return (
         <NavContainer>
             <NavWrapper>
@@ -23,7 +24,10 @@ export default function Navbar() {
                     <Btn>
                         Deependra
                     </Btn>
-                    <Btn>
+                    <Btn onClick={() => {
+                    localStorage.clear()
+                    history.push('/login')
+                }}>
                         Logout
                     </Btn>
                 </Others>
@@ -58,8 +62,8 @@ const Search = styled.div`
     margin-right: 2rem;
     input{
         width: 100%;
-        height: 60%;
-        margin-top: 0.45rem;
+        height: 90%;
+        /* margin-top: 10px; */
         border: none;
         outline : none;
         text-indent: 0.7rem;
