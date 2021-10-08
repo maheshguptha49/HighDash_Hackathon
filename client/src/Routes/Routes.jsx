@@ -4,14 +4,11 @@ import Homepage from '../pages/Homepage'
 import Host from '../pages/Host'
 import Signup from '../Components/Signup/Signup'
 import Login from '../Components/Login/Login'
-<<<<<<< HEAD
 import Chat from '../Components/Chat'
 import Booking from '../pages/Booking'
-=======
 import { loadData } from '../utils/localSt';
 import { useHistory } from "react-router-dom";
 
->>>>>>> 795583695d78a27ddac703a667dee0d3daee815b
 
 export default function Routes() {
     const history=useHistory()
