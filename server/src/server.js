@@ -1,14 +1,40 @@
 const express = require("express");
 require("dotenv").config();
+const cors = require("cors");
 
 const connect = require("./configs/db");
 const PORT = process.env.PORT || 2525;
 
+const Pusher = require("pusher");
+
+const pusher = new Pusher({
+  appId: "1278961",
+  key: "88357217eb7831ebfe53",
+  secret: "17b7c9acd5e07f49c5c6",
+  cluster: "ap2",
+  useTLS: true,
+});
+
+const { register, login } = require("./controllers/auth.controller");
+const showController = require("./controllers/show.controller");
+
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-const start = async () => {
-  app.listen(PORT, () => {
+app.post("/api/register", register);
+app.post("/api/login", login);
+
+app.use("/api/show", showController);
+
+app.post("/api/message", (req, res) => {
+  const payload = req.body;
+  pusher.trigger("real-chat", "message", payload);
+  res.send(payload);
+});
+
+const start = () => {
+  app.listen(PORT, async () => {
     await connect();
     console.log("Listening on ", PORT);
   });
