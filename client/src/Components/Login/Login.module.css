@@ -50,7 +50,8 @@
 }
 .loginBtn:hover {
   background: #03e9f4;
-  color: #fff;
+  color: rgb(8, 0, 0);
+  font-weight: bold;
   border-radius: 5px;
   box-shadow: 0 0 5px #03e9f4, 0 0 10px #03e9f4, 0 0 50px #03e9f4,
     0 0 10px #05d1db;
