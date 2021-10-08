@@ -36,6 +36,7 @@ export default function Navbar() {
 const NavContainer = styled.div`
     background-color: #0a0f18;
     position: sticky;
+    height: 60px;
     top: 0;
     a{
         text-decoration: none;
@@ -58,26 +59,32 @@ const Search = styled.div`
     margin-right: 2rem;
     input{
         width: 100%;
-        height: 60%;
+        height: 70%;
         margin-top: 0.45rem;
         border: none;
         outline : none;
         text-indent: 0.7rem;
-        border-radius:2px; 
+        border-radius:2px;
+        background-color: #ffffff11;
+        font-size: 0.8rem;color: #fff;
+        border-bottom: 1px solid #fff;
     }
 `
 const Btn = styled.div`
     color: #ffffff;
     cursor: pointer;
-    padding: 0.3rem 1.5rem ;
+    padding: 0.3rem 0rem ;
+    margin: 0 1.3rem;
     :hover {
         border-bottom: 1px solid #ffffff;
     }
     :nth-child(2){
-    background-color: #08e1e9;
+    background-color: #00a4aa;
     border-radius: 2px;
+    text-align: center;
+    width: 60px;
     :hover{
-        background-color: #00d1d8;
+        background-color: #008388;
         border: none;
     }
     }
