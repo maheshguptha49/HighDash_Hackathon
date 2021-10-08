@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import {NavLink} from 'react-router-dom'
+import {useHistory,NavLink} from 'react-router-dom'
 
 export default function Navbar() {
+    const history=useHistory()
     return (
         <NavContainer>
             <NavWrapper>
@@ -23,7 +24,10 @@ export default function Navbar() {
                     <Btn>
                         Deependra
                     </Btn>
-                    <Btn>
+                    <Btn onClick={() => {
+                    localStorage.clear()
+                    history.push('/login')
+                }}>
                         Logout
                     </Btn>
                 </Others>
