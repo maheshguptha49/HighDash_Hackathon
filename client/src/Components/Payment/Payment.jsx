@@ -23,7 +23,7 @@ export function Payment() {
         });
         
         setTimeout(() => {
-            history.push("/home")
+            history.push("/")
         }, 1000)
     }
 

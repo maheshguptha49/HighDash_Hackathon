@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Route, Switch } from 'react-router'
 import Homepage from '../pages/Homepage'
 import Host from '../pages/Host'
@@ -28,7 +28,7 @@ export default function Routes() {
                 <Route path="/login">
                     <Login />
                 </Route>
-                <Route exact path="/home">
+                <Route exact path="/">
                     <Homepage/>
                 </Route>
                 <Route exact path="/host">

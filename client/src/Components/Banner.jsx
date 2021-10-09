@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ShowCard from './Homepage/ShowCard'
+import ShowCard from '../Components/Homepage/ShowCard'
 import styled from 'styled-components'
 import axios from "axios"
 import {backurl} from "../utils/url"
