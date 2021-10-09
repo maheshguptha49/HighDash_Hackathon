@@ -52,4 +52,7 @@ const Details = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  div {
+    text-transform: capitalize;
+  }
 `;
