@@ -1,4 +1,4 @@
-import Chat from "./Components/Chat";
+import Chat from "./Components/StreamChat/Chat";
 
 function App() {
   return (

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const showSchema = mongoose.Schema(
   {
-    show: { type: String, required: true, unique: true },
+    show: { type: String, required: true },
     artist: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",

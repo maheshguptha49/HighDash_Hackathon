@@ -17,6 +17,7 @@ const pusher = new Pusher({
 
 const { register, login } = require("./controllers/auth.controller");
 const showController = require("./controllers/show.controller");
+const bookController = require("./controllers/book.controller");
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,7 @@ app.post("/api/register", register);
 app.post("/api/login", login);
 
 app.use("/api/show", showController);
+app.use("/api/book", bookController);
 
 app.post("/api/message", (req, res) => {
   const payload = req.body;
