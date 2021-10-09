@@ -14,6 +14,12 @@ router.get("/", async (req, res) => {
   res.status(200).json({ show });
 });
 
+
+router.get("/:id", async (req, res) => {
+  const show = await Show.findById(req.params.id).populate("artist").lean().exec();
+  res.status(200).json({ show });
+});
+
 router.patch("/:id", async (req, res) => {
   const show = await Show.findByIdAndUpdate(req.params.id, req.body, {
     returnOriginal: false,

@@ -1,28 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-
+import axios from "axios"
+import {useParams} from "react-router-dom"
+import { backurl } from '../../utils/url'
+import {useSelector} from "react-redux"
+import {useHistory} from "react-router-dom"
 export default function Book() {
+
+    const {user,token}=useSelector((state)=>state.auth)
+    const {id}=useParams()
+    const [show,setShow]=useState({})
+    const history = useHistory()
+    useEffect(() => {
+       getData()
+    }, [])
+    async function getData(){
+        const {data}=await axios.get(`${backurl}/api/show/${id}`)
+        console.log(data.show)
+        setShow(data.show)
+    }
+    async function bookShow(){
+
+       history.push(`/payment?show_id=${show._id}&user_id=${user._id}`)
+
+    }
     return (
         <Cont>
             <Wrapper>
                 <Image>
-                    <img src="showcard.jpg" alt="streamline" />
+                    <img src={show.imageURL?show.imageURL:"https://pbs.twimg.com/profile_images/1234759443193180161/5qmltfjB.jpg"} alt="streamline" />
                 </Image>
                 <Detail>
                     <ShowName>
-                        Mahesh's Masai Journey
+                       {show.show}
                     </ShowName>
                     <Name>
-                        Mahesh Guptha
+                        {show?.artist?.name}
                     </Name>
                     <Catg>
-                        Comedy
+                        {show.category}
                     </Catg>
                     <About>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita libero magnam tenetur autem cum non amet ipsum iste odit adipisci?
+                        {show.about?show.about:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita libero magnam tenetur autem cum non amet ipsum iste odit adipisci?"}
                     </About>
+                    <Price>
+                        $ {show?.price} only
+                    </Price>
                     <BookBtn>
-                        <button>Book Now</button>
+                        <button onClick={bookShow}>Book Now</button>
                     </BookBtn>
                 </Detail>
             </Wrapper>
@@ -87,3 +112,8 @@ const BookBtn = styled.div`
         border: none;
     }
 `
+const Price = styled.div`
+font-size: 1.2rem;
+font-weight: 500;
+margin-top:1rem;`
+
