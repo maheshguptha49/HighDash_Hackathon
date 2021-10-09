@@ -14,7 +14,7 @@ export default function Banner() {
    async  function getData(){
         let {data}=await axios.get(`${backurl}/api/show`)
         data=data.show
-        data[0].category="dance"
+        //data[0].category="dance"
         const categories2={}
         data.map((item)=>{
              categories2[item.category]=[]
