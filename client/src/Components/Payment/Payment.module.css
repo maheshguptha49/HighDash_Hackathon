@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+.main {
+  user-select: none;
+  margin: 0;
+  padding:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110vh;
+  width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: 'Oxygen', sans-serif;
+  /* background: hsl(199deg 100% 35% / 64%); */
+}
+h {
+  font-size: 0.9em;
+  padding: 10px;
+  color: #1f1f1f;
+  text-transform: uppercase;
+}
+p {
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 5px;
+  margin:0;
+}
+.cardwrapper {
+  height: 480px;
+  width: 400px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #C0C0C0;
+  background: white;
+  box-shadow: 0 15px 15px rgba(231, 226, 226, 0.6);
+
+}
+.main input{
+    text-indent: 1rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+  width: 300px;
+  margin-top: -80px;
+  padding: 10px;
+  border-radius: 20px;
+  /* border: 1px solid black; */
+  background-image: url('https://images.wallpaperscraft.com/image/stains_paint_liquid_144876_3840x2400.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: #131a27;
+
+   box-shadow: 5px 5px 10px #000,
+             -5px -5px 10px #333;
+  transition: all .4s ease;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+.cardheader, .cardnumber, .cardbottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  transition: all .4s ease;
+}
+.cardnumber {
+  justify-content: center; 
+  margin: 10px 0px 10px 0px;
+  border-radius: 5px;
+  width: 90%;
+  transition: all .4s ease;
+}
+
+.chip {
+  height: 50px;
+  width: 80px;
+  border-radius: 15px;
+  margin: 10px;
+}
+.logo {
+  height: 60px;
+  width: 100px;
+  margin: 10px;
+  border-radius: 15px;
+}
+.pcardnumber, .cardname, .cardcvv, .cardmonth, .cardyear
+{
+  color: #f1f1f1;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all .4s ease;
+}
+.cardnamewrapper, .cvvwrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 70%;
+  border-radius: 5px;
+  padding:0;
+  transition: all .4s ease;
+}
+.datewrapper {
+  width: 30%;
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-radius: 5px;
+  transition: all .4s ease;
+}
+
+.cardname::before {
+  display: block;
+  content: "cardholder";
+  font-size: 0.7em;
+  letter-spacing: normal;
+  color: lightgrey;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+  border-left: 1px solid #C0C0C0;
+  border-right: 1px solid #C0C0C0;
+  border-bottom: 1px solid #C0C0C0;
+  border-radius: 15px;
+}
+.heading {
+  width: 90%; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.formcardnumber , .formcardholder, .formbottom{
+  height: 50px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #C0C0C0;
+}
+.formbottom {
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+}
+.formSubmit {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.month, .year {
+  width: 20%;
+  border: 1px solid #C0C0C0;
+  margin: 0px 10px 0px 10px;
+}
+.submit {
+  height: 40px;
+  width: 180px;
+  border-radius: 5px;
+  margin: 30px;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  background: #03A9F4;
+}
+input {
+  height: 45px;
+  width: 95%;
+  outline: none;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+}
+.date {
+  width: 40%;
+}
+.inputcvv {
+  border: 1px solid #C0C0C0;
+  width: 30%;
+  float: right;
+}

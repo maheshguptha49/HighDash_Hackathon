@@ -1,0 +1,12 @@
+
+host will create a new show and send the details to bakcend eventschema should be sent
+
+hostedShows one array
+bookedshows one array
+
+related to the events collection
+
+user booking an event
+userId and eventId will be sent to bakcend
+payment should be made here 
+
