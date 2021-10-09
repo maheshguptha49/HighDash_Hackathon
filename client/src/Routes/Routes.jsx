@@ -11,15 +11,15 @@ import { useHistory } from "react-router-dom";
 
 
 export default function Routes() {
-    const history=useHistory()
-    useEffect(() => {
-        let user=loadData("token")
-        if (!user) {
-          return  history.push("/login")
-        } else {
-         return   history.push("/home")
-        }
-    },[])
+    // const history=useHistory()
+    // useEffect(() => {
+    //     let user=loadData("token")
+    //     if (!user) {
+    //       return  history.push("/login")
+    //     } else {
+    //      return   history.push("/home")
+    //     }
+    // },[])
     return (
         <>
             <Switch>
