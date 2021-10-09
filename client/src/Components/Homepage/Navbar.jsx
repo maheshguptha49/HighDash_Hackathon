@@ -24,7 +24,7 @@ export default function Navbar() {
                     </NavLink>
                     </Btn>
                     <Btn>
-                        {user.name.toUpperCase()}
+                        {user?.name?.toUpperCase()}
                     </Btn>
                     <Btn onClick={() => {
                     localStorage.clear()
