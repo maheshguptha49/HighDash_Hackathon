@@ -6,6 +6,12 @@ const router = require("express").Router();
 
 router.post("/", async (req, res) => {
   const show = await Book.create(req.body);
+  const {bookedShows}= await User.findById(req.body.user)
+  console.log(bookedShows,req.body)
+  for(let i=0; i<bookedShows.length; i++){
+    if(req.body.booked===bookedShows[i]?.toString()) return res.status(201).json({message:"already booked fellow"})
+ }
+
   const userAdd = await User.findByIdAndUpdate(
     req.body.user,
     {

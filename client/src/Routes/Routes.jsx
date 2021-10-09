@@ -9,6 +9,14 @@ import { loadData } from "../utils/localSt";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Payment } from "../Components/Payment/Payment";
+<<<<<<< HEAD
+=======
+import Chat from "../Components/StreamChat/Chat";
+import { BookedShows } from "../Components/BookedShows/BookedShows";
+import BookedShowComponent from "../Components/BookedShows/BookedShowComponent";
+import { HostedShows } from "../Components/HostedShows/HostedShows";
+import HostedShowComponent from "../Components/HostedShows/HostedShowComponent";
+>>>>>>> 5af0f53dea0eb58845a7d06c10a7e6b83f5da628
 
 export default function Routes() {
   const history = useHistory();
@@ -39,6 +47,19 @@ export default function Routes() {
         </Route>
         <Route exact path="/payment">
           <Payment />
+        </Route>
+        <Route exact path="/bookedshows">
+          <BookedShows />
+        </Route>
+        <Route exact path="/bookedshows/:id">
+          <BookedShowComponent />
+        </Route>
+        <Route exact path="/hostedshows">
+          <HostedShows/>
+          
+        </Route>
+        <Route exact path="/hostedshows/:id">
+          <HostedShowComponent/>
         </Route>
       </Switch>
     </>

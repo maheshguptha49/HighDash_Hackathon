@@ -1,9 +1,18 @@
 const Show = require("../models/show.model");
+const User = require("../models/user.model")
 
 const router = require("express").Router();
 
 router.post("/", async (req, res) => {
   const show = await Show.create(req.body);
+  console.log(show,"show",show._id,req.body)
+  const userAdd = await User.findByIdAndUpdate(
+    req.body.artist,
+    {
+      $push: { hostedShows: show._id },
+    },
+    { returnOriginal: false }
+  );
 
   res.status(201).json({ show });
 });

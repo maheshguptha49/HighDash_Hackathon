@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory, NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const history = useHistory();
+  const [linksShow,setLinksShow]=useState(false)
   const { user } = useSelector((state) => state.auth);
   return (
     <NavContainer>
@@ -39,7 +40,12 @@ export default function Navbar() {
           <Btn>
             <NavLink to="/host">Host</NavLink>
           </Btn>
-          <Btn>{user?.name?.toUpperCase()}</Btn>
+          <Btn onMouseEnter={()=>{setLinksShow(true)}} onMouseLeave={()=>setLinksShow(false)} >{user?.name?.toUpperCase()}
+          <div style={{display:linksShow?"block":"none",position:"absolute",background:"rgb(0,164,170)",padding:"10px 10px"}} >
+            <Link style={{display:"block",margin:"10px 0"}} to="/bookedshows" >BookedShows</Link>
+            <Link style={{display:"block"}} to="/hostedshows" >HostedShows</Link>
+          </div>
+          </Btn>
           <Btn
             onClick={() => {
               localStorage.clear();
@@ -98,9 +104,8 @@ const Btn = styled.div`
   cursor: pointer;
   padding: 0.3rem 0rem;
   margin: 0 1.3rem;
-  :hover {
-    border-bottom: 1px solid #ffffff;
-  }
+  position:relative;
+ 
   :nth-child(2) {
     background-color: #00a4aa;
     border-radius: 2px;
@@ -111,4 +116,5 @@ const Btn = styled.div`
       border: none;
     }
   }
+  
 `;

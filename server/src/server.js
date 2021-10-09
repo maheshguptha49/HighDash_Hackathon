@@ -18,6 +18,7 @@ const pusher = new Pusher({
 const { register, login } = require("./controllers/auth.controller");
 const showController = require("./controllers/show.controller");
 const bookController = require("./controllers/book.controller");
+const userController= require("./controllers/user.controller")
 const commentController = require("./controllers/comment.controller");
 
 const app = express();
@@ -36,7 +37,7 @@ app.post("/api/message", (req, res) => {
   pusher.trigger("real-chat", "message", payload);
   res.send(payload);
 });
-
+app.use("/api/users",userController)
 const start = () => {
   app.listen(PORT, async () => {
     await connect();

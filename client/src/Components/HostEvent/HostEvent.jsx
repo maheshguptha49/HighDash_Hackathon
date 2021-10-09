@@ -111,9 +111,9 @@ const HostEvent = () => {
         show: name,
         artist: user._id,
         date:
-          value.split(" ")[2] +
-          " " +
           value.split(" ")[1] +
+          " " +
+          value.split(" ")[2] +
           " " +
           value.split(" ")[3],
         time: value.split(" ")[4],
