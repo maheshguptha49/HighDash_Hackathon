@@ -34,8 +34,13 @@ const Chat = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:2424/api/storeComment")
-      .then((res) => setChat(res.data.comment));
+      .get(`http://localhost:2424/api/storeComment/${param.id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.comment) {
+          return setChat(res.data.comment);
+        }
+      });
   }, []);
 
   const send = () => {

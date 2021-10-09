@@ -18,6 +18,7 @@ const pusher = new Pusher({
 const { register, login } = require("./controllers/auth.controller");
 const showController = require("./controllers/show.controller");
 const bookController = require("./controllers/book.controller");
+const commentController = require("./controllers/comment.controller");
 
 const app = express();
 app.use(cors());
@@ -29,6 +30,7 @@ app.post("/api/login", login);
 app.use("/api/show", showController);
 app.use("/api/book", bookController);
 
+app.use("/api/storeComment", commentController);
 app.post("/api/message", (req, res) => {
   const payload = req.body;
   pusher.trigger("real-chat", "message", payload);
