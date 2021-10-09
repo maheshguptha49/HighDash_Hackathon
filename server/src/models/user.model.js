@@ -16,6 +16,12 @@ const userSchema = mongoose.Schema(
     following: [
       { type: mongoose.Schema.Types.ObjectId, ref: "user", required: false },
     ],
+    hostedShows: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "show", required: false },
+    ],
+    bookedShows: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "show", required: false },
+    ],
   },
   { versionKey: false, timestamps: true }
 );

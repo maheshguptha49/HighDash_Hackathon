@@ -7,13 +7,12 @@ import {
   LOGIN_SUCCESS,
 } from "./actionTypes";
 import { loadData, saveData } from "../../utils/localSt";
-
 const initialState = {
   isAuth: false,
   isLoading: false,
   isError: false,
-  token: "",
-  user: {},
+  token: loadData("token")||"",
+  user: loadData("user")||{},
 };
 
 export const authReducer = (state = initialState, { type, payload }) => {

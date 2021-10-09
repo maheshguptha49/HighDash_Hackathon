@@ -8,8 +8,7 @@ export default function Homepage() {
         <Container>
             <Navbar />
             <Banner />
-            <Banner />
-            <Banner/>
+           
         </Container>
     )
 }

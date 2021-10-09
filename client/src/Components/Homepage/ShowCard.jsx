@@ -2,16 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-export default function ShowCard() {
+export default function ShowCard(data) {
+    let {show,artist,time,imageURL}=data
+    imageURL="https://pbs.twimg.com/profile_images/1234759443193180161/5qmltfjB.jpg"
+    console.log(data)
     return (
         <CardCont>
             <Card>
-                <img src="showcard.jpg" alt="" />
+                <img src={imageURL?imageURL:"showcard.jpg"} alt="" />
             </Card>
             <Details>
-                <div>Show Name</div>
-                <div>Artist Name</div>
-                <div>Time</div> 
+                <div>{show}</div>
+                <div>{artist.name}</div>
+                <div>{time}</div> 
             </Details>
         </CardCont>
     )
