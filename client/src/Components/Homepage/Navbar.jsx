@@ -65,6 +65,7 @@ const NavContainer = styled.div`
   position: sticky;
   height: 60px;
   top: 0;
+  z-index:100;
   a {
     text-decoration: none;
     color: #fff;
