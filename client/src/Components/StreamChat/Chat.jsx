@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Pusher from "pusher-js";
 import axios from "axios";
 import styled from "styled-components";
 import { format } from "timeago.js";
 import { useParams } from "react-router";
 import { loadData } from "../../utils/localSt";
+import styles from "../Login/Login.module.css";
 
 const Chat = () => {
   const [text, setText] = useState("");
   const [username, setUsername] = useState("Akshay");
   const [chat, setChat] = useState([]);
+  const [render, setRender] = useState(false);
   var my;
   const param = useParams();
-  console.log(param);
+  //console.log(param);
+  const scrollRef = useRef();
+  useEffect(() => {
+    //to scroll into iew of new message
+    scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
+
   useEffect(() => {
     let user = loadData("user");
     setUsername(user.name);
@@ -26,7 +34,8 @@ const Chat = () => {
     const channel = pusher.subscribe("real-chat");
     channel.bind("message", (data) => {
       chat.push(data);
-      console.log(chat);
+      setRender((p) => !p);
+      // console.log(chat);
       setChat(chat);
     });
     //this.handleTextChange = this.handleTextChange.bind(this);
@@ -36,12 +45,12 @@ const Chat = () => {
     axios
       .get(`http://localhost:2424/api/storeComment/${param.id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.comment) {
           return setChat(res.data.comment);
         }
       });
-  }, []);
+  }, [chat]);
 
   const send = () => {
     const payload = {
@@ -50,25 +59,26 @@ const Chat = () => {
       message: text,
       at: Date.now(),
     };
-    axios
-      .post("http://localhost:2424/api/message", payload)
-      .then((res) => setChat([...chat, res.data]));
-    axios
-      .post("http://localhost:2424/api/storeComment", payload)
-      .then((res) => console.log(res));
-    console.log(chat);
+    axios.post("http://localhost:2424/api/message", payload).then((res) => {
+      chat.push(res.data);
+      setChat(chat);
+      setRender((p) => !p);
+    });
+    axios.post("http://localhost:2424/api/storeComment", payload);
+    // .then((res) => console.log(res));
+    setText("");
+    setRender((p) => !p);
   };
 
   return (
-    <div>
-      Chat
-      <input
-        type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        style={{ backgroundColor: "white" }}
-      />
-      <button onClick={send}>Send</button>
+    <div
+      style={{
+        width: "70%",
+        margin: "auto",
+        maxHeight: "75vh",
+        overflowY: "scroll",
+      }}
+    >
       {chat.map((i) => {
         if (username === i.username) {
           my = true;
@@ -76,12 +86,12 @@ const Chat = () => {
           my = false;
         }
         return (
-          // <>
-          //   <h2>{i.username}</h2>
-          //   <p>{i.message}</p>
-          // </>
-          <Texted>
-            <div style={{ flexDirection: my ? "row-reverse" : "row" }}>
+          <Texted ref={scrollRef}>
+            <div
+              style={{
+                flexDirection: my ? "row-reverse" : "row",
+              }}
+            >
               <img
                 src={`https://avatars.dicebear.com/api/micah/${i.username}.svg`}
                 alt="prof"
@@ -104,6 +114,20 @@ const Chat = () => {
           </Texted>
         );
       })}
+      <div style={{ position: "sticky", bottom: 0 }}>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          style={{ backgroundColor: "white", width: "84%" }}
+        />
+        <button onClick={send} className={styles.loginBtn}>
+          <span />
+          <span />
+          <span />
+          <span /> Send
+        </button>
+      </div>
     </div>
   );
 };
@@ -113,6 +137,8 @@ export default Chat;
 const Texted = styled.div`
   display: flex;
   flex-direction: column;
+  /* width: 70%;
+  margin: auto; */
   > div {
     display: flex;
     flex-direction: row;

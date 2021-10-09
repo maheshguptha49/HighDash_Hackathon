@@ -9,7 +9,6 @@ import { loadData } from "../utils/localSt";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Payment } from "../Components/Payment/Payment";
-import Chat from "../Components/StreamChat/Chat";
 
 export default function Routes() {
   const history = useHistory();
@@ -37,7 +36,6 @@ export default function Routes() {
         </Route>
         <Route exact path="/booking/:id">
           <Booking />
-          <Chat />
         </Route>
         <Route exact path="/payment">
           <Payment />
