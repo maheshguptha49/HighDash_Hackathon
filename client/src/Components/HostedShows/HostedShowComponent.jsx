@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CountDownParent } from "../BookedShows/Countdown";
 import Navbar from "../Homepage/Navbar";
+import Chat from "../StreamChat/Chat";
+import styles from "../Login/Login.module.css";
 
 export default function HostedShowComponent() {
   const { user, token } = useSelector((state) => state.auth);
@@ -29,7 +31,11 @@ export default function HostedShowComponent() {
       console.log(error.message);
     }
   }
+  const [showChat, setShowChat] = useState(false);
 
+  const handleChat = () => {
+    setShowChat((p) => !p);
+  };
   return (
     <>
       <Navbar />
@@ -75,6 +81,23 @@ export default function HostedShowComponent() {
           </Detail>
         </Wrapper>
       </Cont>
+      <button
+        onClick={handleChat}
+        style={{
+          margin: "auto",
+          position: "absolute",
+          right: 0,
+          fontSize: "14px",
+          padding: "15px",
+        }}
+        className={styles.loginBtn}
+      >
+        <span />
+        <span />
+        <span />
+        <span /> {!showChat ? "Open Comments" : "Close Comments"}
+      </button>
+      {showChat && <Chat />}
     </>
   );
 }
