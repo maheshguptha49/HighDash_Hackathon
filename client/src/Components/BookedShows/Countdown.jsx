@@ -29,7 +29,7 @@ export function CountDownParent({ showTime, setShowStarted }) {
     let timeHours = Math.floor((timeDiff % d) / h);
     let timeMinutes = Math.floor((timeDiff % h) / m);
     let timeSeconds = Math.floor((timeDiff % m) / s);
-    if (timeHours === 0 && timeMinutes === 0 && timeSeconds === 0) {
+    if (timeHours <= 0 && timeMinutes <= 0 && timeSeconds <= 0) {
       setShowStarted(true);
       return;
     }
