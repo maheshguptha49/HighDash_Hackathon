@@ -109,11 +109,13 @@ const ShowName = styled.div`
   font-size: 3rem;
   font-weight: 600;
   margin: 1rem 0;
+  text-transform: capitalize;
 `;
 const Name = styled.div`
   font-size: 1.2rem;
   font-weight: 500;
   //margin-top:1rem;
+  text-transform: uppercase;
 `;
 const Catg = styled.div`
   margin-top: 1rem;

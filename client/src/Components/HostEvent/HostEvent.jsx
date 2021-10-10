@@ -64,7 +64,7 @@ const HostEvent = () => {
   };
 
   const upload_button = {
-    backgroundColor: "#2E69FF",
+    backgroundColor: "cyan",
   };
   const postDetails = async () => {
     const data = new FormData();
@@ -144,7 +144,7 @@ const HostEvent = () => {
   return check ? (
     <Loader />
   ) : (
-    <div style={{ marginTop: "50px" }}>
+    <div style={{ marginTop: "50px", textAlign: "center" }}>
       <div style={{ width: "25%", margin: "auto", minWidth: "400px" }}>
         <div style={{ textAlign: "center" }}>
           <svg
@@ -277,8 +277,10 @@ const HostEvent = () => {
                 </div>
               </div>
             </LocalizationProvider>
-            <div>
-              <div>
+            <div style={{ width: "50%", margin: "30px auto" }}>
+              <div
+                style={{ textAlign: "center", width: "100%", margin: "auto" }}
+              >
                 <label htmlFor="upload-photo">
                   <input
                     style={{ display: "none" }}
