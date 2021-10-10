@@ -1,0 +1,31 @@
+
+host will create a new show and send the details to bakcend eventschema should be sent
+
+hostedShows one array
+bookedshows one array
+
+related to the events collection
+
+user booking an event
+userId and eventId will be sent to bakcend
+payment should be made here 
+
+
+//jitsi
+
+host will create a new show and send the details to bakcend eventschema should be sent
+
+user sees the events 
+sees the event page 
+
+he books a event pays the money
+
+the event will be added to the user bookedCollection 
+
+have bookedshows page it has list of the shows he booked
+components of bookedshows will be there
+In the individual component of bookedShow the button will be the there 
+which will be either join now or show hasnt started yet
+
+after clicking on join now button redirect to jitsilink 
+jitsilink will be `baseOfjitsi/_eventid`
