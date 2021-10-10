@@ -6,6 +6,7 @@ import { backurl } from "../../utils/url";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CountDownParent } from "../BookedShows/Countdown";
+import Navbar from "../Homepage/Navbar";
 
 export default function HostedShowComponent() {
   const { user, token } = useSelector((state) => state.auth);
@@ -30,48 +31,51 @@ export default function HostedShowComponent() {
   }
 
   return (
-    <Cont>
-      <Wrapper>
-        <Image>
-          <img
-            src={
-              show.imageURL
-                ? show.imageURL
-                : "https://pbs.twimg.com/profile_images/1234759443193180161/5qmltfjB.jpg"
-            }
-            alt="streamline"
-          />
-        </Image>
-        <Detail>
-          <ShowName>{show.show}</ShowName>
-          <Name>{show?.artist?.name}</Name>
-          <Catg>{show.category}</Catg>
-          <About>
-            {show.about
-              ? show.about
-              : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita libero magnam tenetur autem cum non amet ipsum iste odit adipisci?"}
-          </About>
+    <>
+      <Navbar />
+      <Cont>
+        <Wrapper>
+          <Image>
+            <img
+              src={
+                show.imageURL
+                  ? show.imageURL
+                  : "https://pbs.twimg.com/profile_images/1234759443193180161/5qmltfjB.jpg"
+              }
+              alt="streamline"
+            />
+          </Image>
+          <Detail>
+            <ShowName>{show.show}</ShowName>
+            <Name>{show?.artist?.name}</Name>
+            <Catg>{show.category}</Catg>
+            <About>
+              {show.about
+                ? show.about
+                : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita libero magnam tenetur autem cum non amet ipsum iste odit adipisci?"}
+            </About>
 
-          <BookBtn>
-            {showStarted ? (
-              <button>
-                <a
-                  style={{ textDecoration: "none", color: "white" }}
-                  href={`https://meet.jit.si/streamline2/${show._id}`}
-                >
-                  Start the show
-                </a>
-              </button>
-            ) : (
-              <CountDownParent
-                showTime={showTime}
-                setShowStarted={setShowStarted}
-              />
-            )}
-          </BookBtn>
-        </Detail>
-      </Wrapper>
-    </Cont>
+            <BookBtn>
+              {showStarted ? (
+                <button>
+                  <a
+                    style={{ textDecoration: "none", color: "white" }}
+                    href={`https://meet.jit.si/streamline2/${show._id}`}
+                  >
+                    Start the show
+                  </a>
+                </button>
+              ) : (
+                <CountDownParent
+                  showTime={showTime}
+                  setShowStarted={setShowStarted}
+                />
+              )}
+            </BookBtn>
+          </Detail>
+        </Wrapper>
+      </Cont>
+    </>
   );
 }
 
