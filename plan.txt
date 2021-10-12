@@ -11,7 +11,7 @@ userId and eventId will be sent to bakcend
 payment should be made here 
 
 
-//jitsi
+//jitsi (important)
 
 host will create a new show and send the details to bakcend eventschema should be sent
 
