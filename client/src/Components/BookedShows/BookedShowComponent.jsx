@@ -6,6 +6,9 @@ import { backurl } from "../../utils/url";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CountDownParent } from "./Countdown";
+import Navbar from "../Homepage/Navbar";
+import Chat from "../StreamChat/Chat";
+import styles from "../Login/Login.module.css";
 
 export default function BookedShowComponent() {
   const { user, token } = useSelector((state) => state.auth);
@@ -13,6 +16,12 @@ export default function BookedShowComponent() {
   const [show, setShow] = useState({});
   const [showStarted, setShowStarted] = useState(false);
   const [showTime, setShowTime] = useState("");
+
+  const [showChat, setShowChat] = useState(false);
+
+  const handleChat = () => {
+    setShowChat((p) => !p);
+  };
   const history = useHistory();
   useEffect(() => {
     getData();
@@ -32,48 +41,68 @@ export default function BookedShowComponent() {
     window.location.href(`https://meet.jit.si/streamline2`);
   }
   return (
-    <Cont>
-      <Wrapper>
-        <Image>
-          <img
-            src={
-              show.imageURL
-                ? show.imageURL
-                : "https://pbs.twimg.com/profile_images/1234759443193180161/5qmltfjB.jpg"
-            }
-            alt="streamline"
-          />
-        </Image>
-        <Detail>
-          <ShowName>{show.show}</ShowName>
-          <Name>{show?.artist?.name}</Name>
-          <Catg>{show.category}</Catg>
-          <About>
-            {show.about
-              ? show.about
-              : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita libero magnam tenetur autem cum non amet ipsum iste odit adipisci?"}
-          </About>
+    <>
+      <Navbar />
+      <Cont>
+        <Wrapper>
+          <Image>
+            <img
+              src={
+                show.imageURL
+                  ? show.imageURL
+                  : "https://pbs.twimg.com/profile_images/1234759443193180161/5qmltfjB.jpg"
+              }
+              alt="streamline"
+            />
+          </Image>
+          <Detail>
+            <ShowName>{show.show}</ShowName>
+            <Name>{show?.artist?.name}</Name>
+            <Catg>{show.category}</Catg>
+            <About>
+              {show.about
+                ? show.about
+                : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita libero magnam tenetur autem cum non amet ipsum iste odit adipisci?"}
+            </About>
 
-          <BookBtn>
-            {showStarted ? (
-              <button>
-                <a
-                  style={{ textDecoration: "none", color: "white" }}
-                  href={`https://meet.jit.si/streamline2/${show._id}`}
-                >
-                  Join show
-                </a>
-              </button>
-            ) : (
-              <CountDownParent
-                showTime={showTime}
-                setShowStarted={setShowStarted}
-              />
-            )}
-          </BookBtn>
-        </Detail>
-      </Wrapper>
-    </Cont>
+            <BookBtn>
+              {showStarted ? (
+                <button>
+                  <a
+                    style={{ textDecoration: "none", color: "white" }}
+                    href={`https://meet.jit.si/streamline2/${show._id}`}
+                  >
+                    Join show
+                  </a>
+                </button>
+              ) : (
+                <CountDownParent
+                  showTime={showTime}
+                  setShowStarted={setShowStarted}
+                />
+              )}
+            </BookBtn>
+          </Detail>
+        </Wrapper>
+      </Cont>
+      <button
+        onClick={handleChat}
+        style={{
+          margin: "auto",
+          position: "absolute",
+          right: 0,
+          fontSize: "14px",
+          padding: "15px",
+        }}
+        className={styles.loginBtn}
+      >
+        <span />
+        <span />
+        <span />
+        <span /> {!showChat ? "Open Comments" : "Close Comments"}
+      </button>
+      {showChat && <Chat />}
+    </>
   );
 }
 
