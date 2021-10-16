@@ -5,14 +5,16 @@ import {
   LOGIN_REQUEST,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from "./actionTypes";
 import { loadData, saveData } from "../../utils/localSt";
+
 const initialState = {
   isAuth: false,
   isLoading: false,
   isError: false,
-  token: loadData("token")||"",
-  user: loadData("user")||{},
+  token: loadData("token") || "",
+  user: loadData("user") || {},
 };
 
 export const authReducer = (state = initialState, { type, payload }) => {
@@ -57,6 +59,15 @@ export const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        isAuth: false,
+        token: "",
+        user: {},
       };
 
     default:

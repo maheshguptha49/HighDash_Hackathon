@@ -5,6 +5,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from "./actionTypes";
 import axios from "axios";
 import { backurl } from "../../utils/url";
@@ -41,6 +42,14 @@ const loginSuccess = (payload) => {
 const loginFailure = () => {
   return { type: LOGIN_FAILURE };
 };
+const logoutSuccess = () => {
+  return { type: LOGOUT };
+};
+
+export const logout = () => async (dispatch) => {
+  localStorage.clear();
+  dispatch(logoutSuccess());
+};
 
 export const login = (payload) => async (dispatch) => {
   dispatch(loginRequest());
@@ -49,6 +58,7 @@ export const login = (payload) => async (dispatch) => {
     dispatch(loginSuccess(data));
   } catch (err) {
     console.log("errLogin:", err);
+    alert("Email or Password is Wrong");
     dispatch(loginFailure());
   }
 };
