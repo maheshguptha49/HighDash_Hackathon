@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory, NavLink, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../../store/auth/actions";
 
 export default function Navbar() {
   const history = useHistory();
-  const [linksShow,setLinksShow]=useState(false)
+  const [linksShow, setLinksShow] = useState(false);
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   return (
     <NavContainer>
@@ -40,15 +42,37 @@ export default function Navbar() {
           <Btn>
             <NavLink to="/host">Host</NavLink>
           </Btn>
-          <Btn onMouseEnter={()=>{setLinksShow(true)}} onMouseLeave={()=>setLinksShow(false)} >{user?.name?.toUpperCase()}
-          <div style={{display:linksShow?"block":"none",position:"absolute",background:"rgb(0,164,170)",padding:"10px 10px"}} >
-            <Link style={{display:"block",margin:"10px 0"}} to="/bookedshows" >BookedShows</Link>
-            <Link style={{display:"block"}} to="/hostedshows" >HostedShows</Link>
-          </div>
+          <Btn
+            onMouseEnter={() => {
+              setLinksShow(true);
+            }}
+            onMouseLeave={() => setLinksShow(false)}
+          >
+            {user?.name?.toUpperCase()}
+            <div
+              style={{
+                display: linksShow ? "block" : "none",
+                position: "absolute",
+                background: "rgb(0,164,170)",
+                padding: "10px 10px",
+              }}
+            >
+              <Link
+                style={{ display: "block", margin: "10px 0" }}
+                to="/bookedshows"
+              >
+                BookedShows
+              </Link>
+              <Link style={{ display: "block" }} to="/hostedshows">
+                HostedShows
+              </Link>
+            </div>
           </Btn>
           <Btn
             onClick={() => {
+              console.log("logout running");
               localStorage.clear();
+              dispatch(logout());
               history.push("/login");
             }}
           >
@@ -65,7 +89,7 @@ const NavContainer = styled.div`
   position: sticky;
   height: 60px;
   top: 0;
-  z-index:100;
+  z-index: 100;
   a {
     text-decoration: none;
     color: #fff;
@@ -104,8 +128,8 @@ const Btn = styled.div`
   cursor: pointer;
   padding: 0.3rem 0rem;
   margin: 0 1.3rem;
-  position:relative;
- 
+  position: relative;
+
   :nth-child(2) {
     background-color: #00a4aa;
     border-radius: 2px;
@@ -116,5 +140,4 @@ const Btn = styled.div`
       border: none;
     }
   }
-  
 `;

@@ -11,30 +11,37 @@ import { useSelector } from "react-redux";
 import { Payment } from "../Components/Payment/Payment";
 import Chat from "../Components/StreamChat/Chat";
 import { BookedShows } from "../Components/BookedShows/BookedShows";
+import { useParams } from "react-router-dom";
 import BookedShowComponent from "../Components/BookedShows/BookedShowComponent";
 import { HostedShows } from "../Components/HostedShows/HostedShows";
 import HostedShowComponent from "../Components/HostedShows/HostedShowComponent";
+import { useQuery } from "../Hooks/useQuery";
 
 export default function Routes() {
   const history = useHistory();
   const token = useSelector((state) => state.auth.token);
-  useEffect(() => {
-    let user = token;
-    if (!user) {
-      return history.push("/login");
-    }
-  }, []);
+  console.log("token:", token);
+
+  let user = token;
+  let query = useQuery();
+  console.log("query:", query);
+  if (!user) {
+    if (query?.queriesObj?.register) return <Signup />;
+    console.log("user", user);
+    return <Login />;
+  }
+  console.log("came in routes");
   return (
     <>
       <Switch>
+        <Route exact path="/">
+          <Homepage />
+        </Route>
         <Route exact path="/register">
           <Signup />
         </Route>
-        <Route path="/login">
+        <Route exact path="/login">
           <Login />
-        </Route>
-        <Route exact path="/">
-          <Homepage />
         </Route>
         <Route exact path="/host">
           <Host />
