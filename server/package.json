@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "build": "webpack"
+    "start": "node index"
   },
   "keywords": [],
-  "author": "",
+  "author": "HighDash",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
