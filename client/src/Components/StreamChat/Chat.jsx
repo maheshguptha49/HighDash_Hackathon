@@ -6,6 +6,7 @@ import { format } from "timeago.js";
 import { useParams } from "react-router";
 import { loadData } from "../../utils/localSt";
 import styles from "../Login/Login.module.css";
+import { backurl } from "../../utils/url";
 
 const Chat = () => {
   const [text, setText] = useState("");
@@ -42,14 +43,12 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:2424/api/storeComment/${param.id}`)
-      .then((res) => {
-        // console.log(res);
-        if (res.data.comment) {
-          return setChat(res.data.comment);
-        }
-      });
+    axios.get(`${backurl}/api/storeComment/${param.id}`).then((res) => {
+      // console.log(res);
+      if (res.data.comment) {
+        return setChat(res.data.comment);
+      }
+    });
   }, [chat]);
 
   const send = () => {
@@ -59,12 +58,12 @@ const Chat = () => {
       message: text,
       at: Date.now(),
     };
-    axios.post("http://localhost:2424/api/message", payload).then((res) => {
+    axios.post(`${backurl}/api/message`, payload).then((res) => {
       chat.push(res.data);
       setChat(chat);
       setRender((p) => !p);
     });
-    axios.post("http://localhost:2424/api/storeComment", payload);
+    axios.post(`${backurl}/api/storeComment`, payload);
     // .then((res) => console.log(res));
     setText("");
     setRender((p) => !p);
